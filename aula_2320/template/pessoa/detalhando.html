@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detalhando</title>
+    <link
+      href="{% static 'bootstrap/css/bootstrap.min.css' %}"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-dark text-white">
+    <main class="text-center">
+      <h1 class="mt-5"><strong>Seja bem-vindo! - {{ pessoa.nome }}</strong></h1>
+      <h2>Idade de {{ pessoa.idade }} anos</h2>
+      <td><a href="/pessoa/update/{{ pessoa.id }}/">Ver Detalhes</a></td>
+    </main>
+  </body>
+</html>
