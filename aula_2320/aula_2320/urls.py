@@ -25,5 +25,5 @@ urlpatterns = [
     path('pessoa/read/', vw_pessoa.read, name='read-pessoa'),
     path('pessoa/create/', vw_pessoa.create, name='create-pessoa'),
     path('pessoa/update/<int:id_pessoa>/', vw_pessoa.update, name='update-pessoa'),
-    path('pessoa/delete/', vw_pessoa.delete, name='delete-pessoa'),
+    path('pessoa/delete/<int:id_pessoa>/', vw_pessoa.delete, name='delete-pessoa'),
 ]

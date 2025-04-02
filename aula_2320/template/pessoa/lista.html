@@ -9,14 +9,18 @@
     <body class="bg-dark text-white">
     <main class="text-center">
     <h1 class="pb-5 pt-5"><strong>Lista de pessoas</strong></h1> 
-    <a href="{% url 'create-pessoa' %}" class="btn btn-primary position-absolute start-0 ms-3">ADD +</a>
+    <a href="{% url 'create-pessoa' %}" class="btn btn-primary position-absolute start-0 top-1 ms-3">ADD +</a>
     <table class="table table-hover table-dark">
         <thead>
         <tr>
             <th>Nome</th>
             <th>Idade</th>
+            <th>Cidade</th>
+            <th>Estado</th>
+            <th>Data</th>
             <th>Detalhes</th>
             <th>Editar</th>
+            <th>Deletar</th>
         </tr>
     </thead>
     <tbody>
@@ -24,8 +28,12 @@
         <tr>
             <td>{{ pessoa.nome }}</td>
             <td>{{ pessoa.idade }}</td>
+            <th>{{ pessoa.cidade }}</th>
+            <th>{{ pessoa.estado }}</th>
+            <th>{{ pessoa.data }}</th>
             <td><a href="/pessoa/{{ pessoa.id }}/">Ver Detalhes</a></td>
             <td><a href="/pessoa/update/{{ pessoa.id }}/">Editar</a></td>
+            <td><a href="/pessoa/delete/{{ pessoa.id }}/">Editar</a></td>
         </tr>
         {% endfor %}
     </tbody>

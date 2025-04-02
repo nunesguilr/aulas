@@ -32,8 +32,11 @@ def update(request, id_pessoa):
         form = PessoaForm(instance=pessoa)    
     return render(request, 'pessoa/atualizando.html', {'form': form})
 
-def delete(request):
-    return render(request, 'pessoa/deletando.html')
+def delete(request, id_pessoa):
+    pessoa = Pessoa.objects.get(id=id_pessoa)
+    pessoa.delete() 
+    
+    return redirect('read-pessoa')
 
 def detalhe(request, id_pessoa):
     pessoa = Pessoa.objects.get(id=id_pessoa)
