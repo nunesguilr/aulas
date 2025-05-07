@@ -3,7 +3,8 @@ from .models import Pessoa
 from .form import PessoaForm
 
 def main(request):
-    return render(request, 'pessoa/main.html')
+     return render(request, 'pessoa/main.html')
+
 
 def read(request):
     pessoas = Pessoa.objects.all()

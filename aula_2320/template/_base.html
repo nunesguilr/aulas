@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Layout Verde Água</title>
+  <style>
+    :root {
+      --verde-agua: #7FFFD4;
+      /* aqua marine */
+      --verde-agua-escuro: #66cdaa;
+      --fundo: #f0fdfa;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--fundo);
+      display: flex;
+      height: 100vh;
+      flex-direction: column;
+    }
+
+    .topbar {
+      background-color: var(--verde-agua);
+      padding: 1rem;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #004d40;
+    }
+
+    .main {
+      display: flex;
+      flex: 1;
+    }
+
+    .sidebar {
+      background-color: var(--verde-agua-escuro);
+      width: 220px;
+      padding: 1rem;
+      color: white;
+    }
+
+    .content {
+      flex: 1;
+      padding: 2rem;
+      background-color: white;
+      color: #004d40;
+    }
+
+    .sidebar ul {
+      list-style: none;
+    }
+
+    .sidebar li {
+      margin: 1rem 0;
+    }
+
+    .sidebar a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .sidebar a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  {% include '_topbar.html' %}
+
+  <div class="main">
+    {% include '_sidebar.html' %}
+    <div class="content">
+      {% block content %}
+      {% endblock %}
+    </div>
+  </div>
+</body>
+
+</html>

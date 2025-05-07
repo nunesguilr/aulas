@@ -1,14 +1,7 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Criando</title>
-    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-</head>
-<body class="bg-dark text-white">
-    <main class="container text-center">
+{% extends '_base.html' %}
+
+{% block content %}    
+<main class="container text-center">
         <h1 class="mt-5"><strong>Vamos criar um usuário!</strong></h1> 
         
         <form method="post" action="" class="mt-4">
@@ -22,5 +15,5 @@
             </div>
         </form>
     </main>
-</body>
-</html>
+
+{% endblock %}

@@ -1,12 +1,6 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leia-me</title>
-    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-    <body class="bg-dark text-white">
+{% extends '_base.html' %}
+
+{% block content %}
     <main class="text-center">
     <h1 class="pb-5 pt-5"><strong>Lista de pessoas</strong></h1> 
     <a href="{% url 'create-pessoa' %}" class="btn btn-primary position-absolute start-0 top-1 ms-3">ADD +</a>
@@ -39,5 +33,5 @@
     </tbody>
     </table>
 </main>
-</body>
-</html>
+
+{% endblock %}
