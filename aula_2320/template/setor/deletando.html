@@ -1,0 +1,14 @@
+{% extends '_base.html' %}
+
+{% block content %}
+<main class="text-center">
+    <h1 class="mt-5"><strong>Vamos deletar o Setor!</strong></h1>
+    <p>Tem certeza que deseja deletar este setor?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Confirmar Exclusão</button>
+        <a href="{% url 'read-setor' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</main>
+
+{% endblock %}

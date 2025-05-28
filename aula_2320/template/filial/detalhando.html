@@ -1,0 +1,13 @@
+{% extends '_base.html' %}
+
+{% block content %}
+    <main class="text-center">
+      <h1 class="mt-5"><strong>Detalhes da Filial - {{ filial.nome }}</strong></h1>
+      <h2>Endereço: {{ filial.endereco }}</h2>
+      <h2>Cidade: {{ filial.cidade }}</h2>
+      <h2>Estado: {{ filial.estado }}</h2>
+      <td><a href="{% url 'update-filial' filial.id %}" class="btn btn-primary">Editar Filial</a></td>
+      <td><a href="{% url 'read-filial' %}" class="btn btn-secondary">Voltar para a Lista</a></td>
+    </main>
+
+{% endblock %}

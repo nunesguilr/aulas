@@ -1,0 +1,12 @@
+{% extends '_base.html' %}
+
+{% block content %}
+    <main class="text-center">
+      <h1 class="mt-5"><strong>Detalhes do Setor - {{ setor.nome }}</strong></h1>
+      {# Se houver outros campos no modelo Setor, adicione-os aqui #}
+      {# Exemplo: <h2>Descrição: {{ setor.descricao }}</h2> #}
+      <td><a href="{% url 'update-setor' setor.id %}" class="btn btn-primary">Editar Setor</a></td>
+      <td><a href="{% url 'read-setor' %}" class="btn btn-secondary">Voltar para a Lista</a></td>
+    </main>
+
+{% endblock %}
