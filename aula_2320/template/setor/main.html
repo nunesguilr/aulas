@@ -1,8 +1,10 @@
 {% extends '_base.html' %}
 {% block content %}
-<main class="text-center">
-    <h1 class="mt-5"><strong>Gerenciamento de Setores</strong></h1> 
-    <a href="{% url 'setor:create' %}" class="btn btn-primary me-2">Cadastrar Setor</a>
-    <a href="{% url 'setor:read' %}" class="btn btn-secondary">Listar Setores</a>
+<main class="container py-5 text-center"> 
+    <h1 class="mb-4"><strong>Gerenciamento de Setores</strong></h1> 
+    {% if perms.setor.add_setor %}
+        <a href="{% url 'setor:create' %}" class="btn btn-success me-3">Cadastrar Novo Setor</a> 
+    {% endif %}
+    <a href="{% url 'setor:read' %}" class="btn btn-info text-white">Listar Setores</a> 
 </main>
 {% endblock %}

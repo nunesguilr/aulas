@@ -1,37 +1,58 @@
 {% extends '_base.html' %}
 
 {% block content %}
-    <main class="text-center">
-    <h1 class="pb-5 pt-5"><strong>Lista de pessoas</strong></h1> 
-    <a href="{% url 'pessoa:create' %}" class="btn btn-primary position-absolute start-0 ms-3">ADD +</a>
-    <table class="table table-hover table-dark">
-        <thead>
-        <tr>
-            <th>Nome</th>
-            <th>Idade</th>
-            <th>Cidade</th>
-            <th>Estado</th>
-            <th>Data</th>
-            <th>Detalhes</th>
-            <th>Editar</th>
-            <th>Deletar</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for pessoa in pessoas %}
-        <tr>
-            <td>{{ pessoa.nome }}</td>
-            <td>{{ pessoa.idade }}</td>
-            <th>{{ pessoa.cidade }}</th>
-            <th>{{ pessoa.estado }}</th>
-            <th>{{ pessoa.data }}</th>
-            <td><a href="{% url 'pessoa:detalhe' pessoa.id %}">Ver Detalhes</a></td>
-            <td><a href="{% url 'pessoa:update' pessoa.id %}">Editar</a></td>
-            <td><a href="{% url 'pessoa:delete' pessoa.id %}">Deletar</a></td>
-        </tr>
-        {% endfor %}
-    </tbody>
-    </table>
+<main class="container py-5"> 
+    <div class="d-flex justify-content-between align-items-center mb-4"> 
+        <h1 class="mb-0"><strong>Lista de Pessoas</strong></h1> 
+        {% if perms.pessoa.add_pessoa %} 
+            <a href="{% url 'pessoa:create' %}" class="btn btn-success">Adicionar Nova Pessoa</a> 
+        {% endif %}
+    </div>
+
+    <div class="card shadow-sm"> 
+        <div class="card-body p-0"> 
+            <div class="table-responsive"> 
+                <table class="table table-striped table-hover mb-0"> 
+                    <thead class="bg-light">
+                        <tr>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Idade</th>
+                            <th scope="col">Cidade</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col">Data</th>
+                            <th scope="col">Detalhes</th>
+                            {% if perms.pessoa.change_pessoa or perms.pessoa.delete_pessoa %} 
+                                <th scope="col">Editar</th>
+                                <th scope="col">Deletar</th>
+                            {% endif %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for pessoa in pessoas %}
+                        <tr>
+                            <td>{{ pessoa.nome }}</td>
+                            <td>{{ pessoa.idade }}</td>
+                            <td>{{ pessoa.cidade }}</td>
+                            <td>{{ pessoa.estado }}</td>
+                            <td>{{ pessoa.data }}</td>
+                            <td><a href="{% url 'pessoa:detalhe' pessoa.id %}" class="btn btn-sm btn-info text-white">Ver</a></td> 
+                            {% if perms.pessoa.change_pessoa %} 
+                                <td><a href="{% url 'pessoa:update' pessoa.id %}" class="btn btn-sm btn-warning">Editar</a></td>
+                            {% endif %}
+                            {% if perms.pessoa.delete_pessoa %} 
+                                <td><a href="{% url 'pessoa:delete' pessoa.id %}" class="btn btn-sm btn-danger">Deletar</a></td>
+                            {% endif %}
+                        </tr>
+                        {% empty %} 
+                        <tr>
+                            <td colspan="{% if perms.pessoa.change_pessoa or perms.pessoa.delete_pessoa %}9{% else %}7{% endif %}" class="text-center py-4 text-muted">Nenhuma pessoa cadastrada.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </main>
 
 {% endblock %}

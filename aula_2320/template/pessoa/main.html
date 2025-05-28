@@ -2,7 +2,10 @@
 {% block content %}
 <main class="text-center">
     <h1 class="mt-5"><strong>Seja bem-vindo!</strong></h1>
-    <a href="{% url 'pessoa:create' %}" class="btn btn-primary me-2">Cadastrar</a>
+    {# Verifica se o usuário tem permissão para adicionar 'pessoa' #}
+    {% if perms.pessoa.add_pessoa %} 
+        <a href="{% url 'pessoa:create' %}" class="btn btn-primary me-2">Cadastrar</a>
+    {% endif %}
     <a href="{% url 'pessoa:read' %}" class="btn btn-secondary">Listar</a>
 </main>
 {% endblock %}

@@ -1,31 +1,51 @@
 {% extends '_base.html' %}
 
 {% block content %}
-    <main class="text-center">
-    <h1 class="pb-5 pt-5"><strong>Lista de Filiais</strong></h1> 
-    <a href="{% url 'filial:create' %}" class="btn btn-primary position-absolute start-0 ms-3">ADD +</a>
-    <table class="table table-hover table-dark">
-        <thead>
-        <tr>
-            <th>Nome</th>
-            <th>Endereço</th>
-            <th>Detalhes</th>
-            <th>Editar</th>
-            <th>Deletar</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for filial in filiais %}
-        <tr>
-            <td>{{ filial.nome }}</td>
-            <td>{{ filial.endereco }}</td>
-            <td><a href="{% url 'filial:detalhe' filial.id %}">Ver Detalhes</a></td>
-            <td><a href="{% url 'filial:update' filial.id %}">Editar</a></td>
-            <td><a href="{% url 'filial:delete' filial.id %}">Deletar</a></td>
-        </tr>
-        {% endfor %}
-    </tbody>
-    </table>
-</main>
+<main class="container py-5"> 
+    <div class="d-flex justify-content-between align-items-center mb-4"> 
+        <h1 class="mb-0"><strong>Lista de Filiais</strong></h1>
+        {% if perms.filial.add_filial %}
+            <a href="{% url 'filial:create' %}" class="btn btn-success">Adicionar Nova Filial</a> 
+        {% endif %}
+    </div>
 
+    <div class="card shadow-sm"> 
+        <div class="card-body p-0"> 
+            <div class="table-responsive"> 
+                <table class="table table-striped table-hover mb-0"> 
+                    <thead class="bg-light"> 
+                        <tr>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Endereço</th>
+                            <th scope="col">Detalhes</th>
+                            {% if perms.filial.change_filial or perms.filial.delete_filial %}
+                                <th scope="col">Editar</th>
+                                <th scope="col">Deletar</th>
+                            {% endif %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for filial in filiais %}
+                        <tr>
+                            <td>{{ filial.nome }}</td>
+                            <td>{{ filial.endereco }}</td>
+                            <td><a href="{% url 'filial:detalhe' filial.id %}" class="btn btn-sm btn-info text-white">Ver</a></td> {# Botão menor e mais discreto #}
+                            {% if perms.filial.change_filial %}
+                                <td><a href="{% url 'filial:update' filial.id %}" class="btn btn-sm btn-warning">Editar</a></td> {# Botão menor e de aviso #}
+                            {% endif %}
+                            {% if perms.filial.delete_filial %}
+                                <td><a href="{% url 'filial:delete' filial.id %}" class="btn btn-sm btn-danger">Deletar</a></td> {# Botão menor e de perigo #}
+                            {% endif %}
+                        </tr>
+                        {% empty %} 
+                        <tr>
+                            <td colspan="{% if perms.filial.change_filial or perms.filial.delete_filial %}5{% else %}3{% endif %}" class="text-center py-4 text-muted">Nenhuma filial cadastrada.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
 {% endblock %}

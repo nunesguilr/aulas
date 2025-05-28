@@ -1,0 +1,13 @@
+{% extends '_base.html' %}
+
+{% block content %}
+<main class="text-center">
+    <h1 class="mt-5"><strong>Bem-vindo ao Sistema de Gerenciamento!</strong></h1>
+    <p class="lead">Selecione uma opção para começar:</p>
+    <div class="mt-4">
+        <a href="{% url 'pessoa' %}" class="btn btn-primary btn-lg me-2">Gerenciar Pessoas</a>
+        <a href="{% url 'setor' %}" class="btn btn-info btn-lg me-2">Gerenciar Setores</a>
+        <a href="{% url 'filial' %}" class="btn btn-success btn-lg">Gerenciar Filiais</a>
+    </div>
+</main>
+{% endblock %}

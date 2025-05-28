@@ -4,7 +4,9 @@
 <main class="text-center">
   <h1 class="mt-5"><strong>Seja bem-vindo! - {{ pessoa.nome }}</strong></h1>
   <h2>Idade de {{ pessoa.idade }} anos</h2>
-  <td><a href="{% url 'pessoa:update' pessoa.id %}" class="btn btn-primary">Editar Pessoa</a></td>
+  {% if perms.pessoa.change_pessoa %} 
+    <td><a href="{% url 'pessoa:update' pessoa.id %}" class="btn btn-primary">Editar Pessoa</a></td>
+  {% endif %}
   <td><a href="{% url 'pessoa:read' %}" class="btn btn-secondary">Voltar para a Lista</a></td>
 </main>
 

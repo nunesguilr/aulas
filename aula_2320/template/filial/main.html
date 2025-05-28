@@ -1,8 +1,11 @@
 {% extends '_base.html' %}
 {% block content %}
-<main class="text-center">
-    <h1 class="mt-5"><strong>Gerenciamento de Filiais</strong></h1> 
-    <a href="{% url 'filial:create' %}" class="btn btn-primary me-2">Cadastrar Filial</a>
+<main class="text-center container py-5"> {# Adicionado container e py-5 para centralizar e espaçar #}
+    <h1 class="mt-5"><strong>Gerenciamento de Filiais</strong></h1>
+    {# Verifica se o usuário tem permissão para adicionar 'filial' #}
+    {% if perms.filial.add_filial %}
+        <a href="{% url 'filial:create' %}" class="btn btn-success me-2">Cadastrar Filial</a> {# Botão verde para adicionar #}
+    {% endif %}
     <a href="{% url 'filial:read' %}" class="btn btn-secondary">Listar Filiais</a>
 </main>
 {% endblock %}

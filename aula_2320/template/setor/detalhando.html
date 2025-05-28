@@ -1,12 +1,15 @@
 {% extends '_base.html' %}
 
 {% block content %}
-    <main class="text-center">
-      <h1 class="mt-5"><strong>Detalhes do Setor - {{ setor.nome }}</strong></h1>
-      {# Se houver outros campos no modelo Setor, adicione-os aqui #}
-      {# Exemplo: <h2>Descrição: {{ setor.descricao }}</h2> #}
-      <td><a href="{% url 'setor:update' setor.id %}" class="btn btn-primary">Editar Setor</a></td>
-      <td><a href="{% url 'setor:read' %}" class="btn btn-secondary">Voltar para a Lista</a></td>
-    </main>
+<main class="container py-5 text-center">
+    <h1 class="mb-4"><strong>Detalhes do Setor - {{ setor.nome }}</strong></h1>
+    <p class="lead">Localização: {{ setor.localizacao }}</p> 
 
+    <div class="mt-4">
+        {% if perms.setor.change_setor %}
+            <a href="{% url 'setor:update' setor.id %}" class="btn btn-primary me-3">Editar Setor</a> {# Botão azul #}
+        {% endif %}
+        <a href="{% url 'setor:read' %}" class="btn btn-secondary">Voltar para a Lista</a>
+    </div>
+</main>
 {% endblock %}

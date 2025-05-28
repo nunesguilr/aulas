@@ -1,11 +1,15 @@
 {% extends '_base.html' %}
 
 {% block content %}
-    <main class="text-center">
-      <h1 class="mt-5"><strong>Detalhes da Filial - {{ filial.nome }}</strong></h1>
-      <h2>Endereço: {{ filial.endereco }}</h2>
-      <td><a href="{% url 'filial:update' filial.id %}" class="btn btn-primary">Editar Filial</a></td>
-      <td><a href="{% url 'filial:read' %}" class="btn btn-secondary">Voltar para a Lista</a></td>
-    </main>
+<main class="text-center container py-5"> 
+    <h1 class="mb-4"><strong>Detalhes da Filial - {{ filial.nome }}</strong></h1>
+    <h2>Endereço: {{ filial.endereco }}</h2> 
 
+    <div class="mt-4">
+        {% if perms.filial.change_filial %}
+            <a href="{% url 'filial:update' filial.id %}" class="btn btn-warning me-2">Editar Filial</a> {# Botão de edição com cor de aviso #}
+        {% endif %}
+        <a href="{% url 'filial:read' %}" class="btn btn-secondary">Voltar para a Lista</a>
+    </div>
+</main>
 {% endblock %}
