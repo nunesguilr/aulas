@@ -1,0 +1,39 @@
+{% extends '_base.html' %}
+{% load bootstrap5 %} {# Carrega as tags do bootstrap5 para estilização do formulário #}
+
+{% block content %}
+<main class="container text-center mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4">
+            <h1 class="mb-4"><strong>Login</strong></h1>
+            
+            {% if form.errors %}
+                <div class="alert alert-danger" role="alert">
+                    Seu nome de usuário e senha não correspondem. Por favor, tente novamente.
+                </div>
+            {% endif %}
+
+            {% if next %}
+                {% if user.is_authenticated %}
+                    <p class="alert alert-warning">Sua conta não tem acesso a esta página. Para prosseguir, por favor, faça login com uma conta que tenha acesso.</p>
+                {% else %}
+                    <p class="alert alert-info">Por favor, faça login para ver esta página.</p>
+                {% endif %}
+            {% endif %}
+
+            <form method="post" action="{% url 'login' %}"> 
+                {% csrf_token %}
+                
+                {% bootstrap_form form %}
+
+                <button type="submit" class="btn btn-primary btn-block mt-3">Entrar</button>
+                <input type="hidden" name="next" value="{{ next }}">
+            </form>
+
+            <div class="mt-3">
+                <p>Não tem uma conta? <a href="{% url 'pessoa:create' %}">Registre-se aqui</a></p>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

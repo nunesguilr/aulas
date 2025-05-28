@@ -1,10 +1,11 @@
 {% extends '_base.html' %}
 
 {% block content %}
-    <main class="text-center">
-      <h1 class="mt-5"><strong>Seja bem-vindo! - {{ pessoa.nome }}</strong></h1>
-      <h2>Idade de {{ pessoa.idade }} anos</h2>
-      <td><a href="/pessoa/update/{{ pessoa.id }}/">Ver Detalhes</a></td>
-    </main>
+<main class="text-center">
+  <h1 class="mt-5"><strong>Seja bem-vindo! - {{ pessoa.nome }}</strong></h1>
+  <h2>Idade de {{ pessoa.idade }} anos</h2>
+  <td><a href="{% url 'pessoa:update' pessoa.id %}" class="btn btn-primary">Editar Pessoa</a></td>
+  <td><a href="{% url 'pessoa:read' %}" class="btn btn-secondary">Voltar para a Lista</a></td>
+</main>
 
 {% endblock %}

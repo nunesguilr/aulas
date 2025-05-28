@@ -1,13 +1,14 @@
 {% extends '_base.html' %}
+{% load bootstrap5 %}
 
 {% block content %}
-    <main class="text-center">
-    <h1 class="mt-5"><strong>Vamos atualizar!</strong></h1> 
-    <main class="container text-center">        
+<main class="text-center">
+    <h1 class="mt-5"><strong>Vamos atualizar!</strong></h1>
+    <main class="container text-center">
         <form method="post" action="" class="mt-4">
             <div class="form-group">
                 {% csrf_token %}
-                {{ form }}
+                {% bootstrap_form form %}
             </div>
             <div class="form-group mt-3">
                 <button type="button" class="btn btn-secondary">Cancelar</button>

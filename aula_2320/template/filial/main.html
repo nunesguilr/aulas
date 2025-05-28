@@ -2,7 +2,7 @@
 {% block content %}
 <main class="text-center">
     <h1 class="mt-5"><strong>Gerenciamento de Filiais</strong></h1> 
-    <a href="{% url 'create-filial' %}" class="btn btn-primary me-2">Cadastrar Filial</a>
-    <a href="{% url 'read-filial' %}" class="btn btn-secondary">Listar Filiais</a>
+    <a href="{% url 'filial:create' %}" class="btn btn-primary me-2">Cadastrar Filial</a>
+    <a href="{% url 'filial:read' %}" class="btn btn-secondary">Listar Filiais</a>
 </main>
 {% endblock %}

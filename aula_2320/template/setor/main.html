@@ -2,7 +2,7 @@
 {% block content %}
 <main class="text-center">
     <h1 class="mt-5"><strong>Gerenciamento de Setores</strong></h1> 
-    <a href="{% url 'create-setor' %}" class="btn btn-primary me-2">Cadastrar Setor</a>
-    <a href="{% url 'read-setor' %}" class="btn btn-secondary">Listar Setores</a>
+    <a href="{% url 'setor:create' %}" class="btn btn-primary me-2">Cadastrar Setor</a>
+    <a href="{% url 'setor:read' %}" class="btn btn-secondary">Listar Setores</a>
 </main>
 {% endblock %}

@@ -3,7 +3,7 @@
 {% block content %}
     <main class="text-center">
     <h1 class="pb-5 pt-5"><strong>Lista de Filiais</strong></h1> 
-    <a href="{% url 'create-filial' %}" class="btn btn-primary position-absolute start-0 ms-3">ADD +</a>
+    <a href="{% url 'filial:create' %}" class="btn btn-primary position-absolute start-0 ms-3">ADD +</a>
     <table class="table table-hover table-dark">
         <thead>
         <tr>
@@ -19,9 +19,9 @@
         <tr>
             <td>{{ filial.nome }}</td>
             <td>{{ filial.endereco }}</td>
-            <td><a href="{% url 'detalhe-filial' filial.id %}">Ver Detalhes</a></td>
-            <td><a href="{% url 'update-filial' filial.id %}">Editar</a></td>
-            <td><a href="{% url 'delete-filial' filial.id %}">Deletar</a></td>
+            <td><a href="{% url 'filial:detalhe' filial.id %}">Ver Detalhes</a></td>
+            <td><a href="{% url 'filial:update' filial.id %}">Editar</a></td>
+            <td><a href="{% url 'filial:delete' filial.id %}">Deletar</a></td>
         </tr>
         {% endfor %}
     </tbody>
