@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
 
-app_name = 'filial' # Define o namespace para o app 'filial'
+app_name = 'filial'
 
 urlpatterns = [
     path('', views.main, name='main'),

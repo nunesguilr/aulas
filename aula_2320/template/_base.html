@@ -28,7 +28,7 @@
 
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'home' %}">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -38,7 +38,7 @@
             <hr class="sidebar-divider my-0">
 
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'home' %}">
+                <a class="nav-link" href="#">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -98,16 +98,38 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">All Applications:</h6>
+                        {% if request.user.is_superuser %}
                         <a class="collapse-item" href="{% url 'admin:index' %}">Admin</a>
-                        <a class="collapse-item" href="{% url 'login' %}">Login</a>
+                        {% endif %}
+
+                        {% if request.user.is_authenticated %}
                         <a class="collapse-item" href="{% url 'logout' %}">Logout</a>
+                        {% else %}
+                        <a class="collapse-item" href="{% url 'login' %}">Login</a>
+                        {% endif %}
+
+                        {% if perms.pessoa.add_pessoa %}
                         <a class="collapse-item" href="{% url 'pessoa:create' %}">Create Pessoa</a>
+                        {% endif %}
+                        {% if perms.pessoa.view_pessoa %}
                         <a class="collapse-item" href="{% url 'pessoa:read' %}">List Pessoas</a>
+                        {% endif %}
+
+                        {% if perms.setor.add_setor %}
                         <a class="collapse-item" href="{% url 'setor:create' %}">Create Setor</a>
+                        {% endif %}
+                        {% if perms.setor.view_setor %}
                         <a class="collapse-item" href="{% url 'setor:read' %}">List Setores</a>
+                        {% endif %}
+
+                        {% if perms.filial.add_filial %}
                         <a class="collapse-item" href="{% url 'filial:create' %}">Create Filial</a>
+                        {% endif %}
+                        {% if perms.filial.view_filial %}
                         <a class="collapse-item" href="{% url 'filial:read' %}">List Filiais</a>
+                        {% endif %}
                     </div>
+
                 </div>
             </li>
 
